@@ -86,6 +86,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\Fonts\laCartoonerie.TTF" />
+    <Resource Include="Assets\Fonts\Lime Days.ttf" />
+    <Resource Include="Assets\Fonts\Shining Monday.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,13 +99,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Core\" />
-    <Folder Include="Assets\Fonts\" />
     <Folder Include="Assets\MVVM\Models\" />
     <Folder Include="Assets\MVVM\ViewModel\" />
     <Folder Include="Assets\MVVM\View\" />
-    <Folder Include="Assets\Themes\Backgrounds\" />
     <Folder Include="Assets\Themes\Icons\" />
     <Folder Include="Assets\Themes\UI Element Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LineTexture.png" />
+    <Resource Include="Assets\Themes\Backgrounds\LoginPanelWallpaper.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
