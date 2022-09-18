@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Talkin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--Az ablakok stílusa-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Themes/UI Element Styles/Window.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

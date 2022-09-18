@@ -9,8 +9,8 @@
         WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
+
+    <Border x:Name="LoginPanel" Style="{StaticResource WindowDesign}">
         
-    <Grid>
-        
-    </Grid>
+    </Border>
 </Window>

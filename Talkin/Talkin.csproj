@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Themes\UI Element Styles\Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,7 +107,6 @@
     <Folder Include="Assets\MVVM\ViewModel\" />
     <Folder Include="Assets\MVVM\View\" />
     <Folder Include="Assets\Themes\Icons\" />
-    <Folder Include="Assets\Themes\UI Element Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Themes\Backgrounds\LineTexture.png" />
