@@ -95,14 +95,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Fonts\" />
-    <Folder Include="MVVM\Models\" />
-    <Folder Include="MVVM\ViewModel\" />
-    <Folder Include="MVVM\View\" />
-    <Folder Include="Themes\Backgrounds\" />
-    <Folder Include="Themes\Icons\" />
-    <Folder Include="Themes\UI Element Styles\" />
+    <Folder Include="Assets\Core\" />
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Assets\MVVM\Models\" />
+    <Folder Include="Assets\MVVM\ViewModel\" />
+    <Folder Include="Assets\MVVM\View\" />
+    <Folder Include="Assets\Themes\Backgrounds\" />
+    <Folder Include="Assets\Themes\Icons\" />
+    <Folder Include="Assets\Themes\UI Element Styles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
