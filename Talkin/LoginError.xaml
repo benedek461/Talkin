@@ -1,27 +1,25 @@
-﻿<Window x:Class="Talkin.Assets.Themes.UI_Element_Styles.NoInternetErrorWindow"
+﻿<Window x:Class="Talkin.LoginError"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Talkin.Assets.Themes.UI_Element_Styles"
+        xmlns:local="clr-namespace:Talkin"
         mc:Ignorable="d"
-        Title="LoginError" Height="200" Width="400"
-        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Background="Transparent" AllowsTransparency="True">
+        Title="LoginErrorMessageWindow" Height="200" Width="400"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
-    <Border x:Name="LoginError" Style="{StaticResource WindowDesign}">
-
+    <Border Style="{StaticResource WindowDesign}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Wrong username or password" FontFamily="Lime Days" FontSize="22" Margin="15"
+            <Label Grid.Row="0" Content="Wrong username or password!" FontFamily="Lime Days" FontSize="22"
                    VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-            <Button Grid.Row="1" Style="{StaticResource MainRoundButtonDesign}" Width="200" Height="50" Content="OK"/>
+            <Button x:Name="buttonOK_WUOR" Grid.Row="1" Style="{StaticResource MainRoundButtonDesign}" 
+                    Content="OK" Height="50" Width="200" HorizontalAlignment="Center"/>
             
         </Grid>
-        
     </Border>
 </Window>
