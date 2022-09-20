@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowDesign-DARKMODE" TargetType="Border">
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Border.Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Assets/Themes/Backgrounds/LoginPanelWallpaper-DARKMODE.png" Stretch="UniformToFill"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
