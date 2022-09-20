@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Talkin"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="480"
+        Title="LoginScreen" Height="640" Width="480"
         WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent" ResizeMode="NoResize">
