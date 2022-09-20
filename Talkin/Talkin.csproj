@@ -55,7 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Themes\UI Element Styles\CloseButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Themes\UI Element Styles\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MainRoundButton-DARKMODE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -63,11 +71,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MinimizeButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Themes\UI Element Styles\MinimizeButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NoInternetErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Themes\UI Element Styles\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\SecondaryButton-DARKMODE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Themes\UI Element Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\Window-DARKMODE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,6 +114,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NoInternetErrorWindow.xaml.cs">
+      <DependentUpon>NoInternetErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -138,6 +165,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Themes\Backgrounds\TalkinLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LoginPanelWallpaper-DARKMODE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\TalkinLogo-DARKMODE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LineTexture-DARKMODE.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
