@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Talkin.Assets.Themes.UI_Element_Styles
+namespace Talkin
 {
     /// <summary>
-    /// Interaction logic for NoInternetErrorWindow.xaml
+    /// Interaction logic for NoInternetErrorMessageWindow.xaml
     /// </summary>
-    public partial class NoInternetErrorWindow : Window
+    public partial class NoInternetErrorMessageWindow : Window
     {
-        public NoInternetErrorWindow()
+        public NoInternetErrorMessageWindow()
         {
             InitializeComponent();
         }
