@@ -55,6 +55,62 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Themes\UI Element Styles\CloseButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MainRoundButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MainRoundButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MinimizeButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\MinimizeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\SecondaryButton-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\SecondaryButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\Window-DARKMODE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +119,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ForgotPasswordWindow.xaml.cs">
+      <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginError.xaml.cs">
+      <DependentUpon>LoginError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NoInternetErrorMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoInternetErrorMessageWindow.xaml.cs">
+      <DependentUpon>NoInternetErrorMessageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +155,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\Fonts\laCartoonerie.TTF" />
+    <Resource Include="Assets\Fonts\Lime Days.ttf" />
+    <Resource Include="Assets\Fonts\Shining Monday.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,14 +167,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Fonts\" />
-    <Folder Include="MVVM\Models\" />
-    <Folder Include="MVVM\ViewModel\" />
-    <Folder Include="MVVM\View\" />
-    <Folder Include="Themes\Backgrounds\" />
-    <Folder Include="Themes\Icons\" />
-    <Folder Include="Themes\UI Element Styles\" />
+    <Folder Include="Assets\Core\" />
+    <Folder Include="Assets\MVVM\Models\" />
+    <Folder Include="Assets\MVVM\ViewModel\" />
+    <Folder Include="Assets\MVVM\View\" />
+    <Folder Include="Assets\Themes\Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LineTexture.png" />
+    <Resource Include="Assets\Themes\Backgrounds\LoginPanelWallpaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\TalkinLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LoginPanelWallpaper-DARKMODE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\TalkinLogo-DARKMODE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LineTexture-DARKMODE.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

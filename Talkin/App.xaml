@@ -4,6 +4,33 @@
              xmlns:local="clr-namespace:Talkin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--Az ablakok stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/Window.xaml" />
+                <!--Az ablakok stílusa (DARKMODE)-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/Window-DARKMODE.xaml" />
+                <!--Az ablakot bezáró gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/CloseButton.xaml" />
+                <!--Az ablakot bezáró gomb stílusa (DARKMODE)-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/CloseButton-DARKMODE.xaml" />
+                <!--Az ablakot minimalizáló gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/MinimizeButton.xaml" />
+                <!--Az ablakot minimalizáló gomb stílusa (DARKMODE)-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/MinimizeButton-DARKMODE.xaml" />
+                <!--A szövegdobozok stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/TextBox.xaml" />
+                <!--A jelszavas szövegdobozok stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/PasswordBox.xaml" />
+                <!--A fő lekerekített sarkú gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/MainRoundButton.xaml" />
+                <!--A fő lekerekített sarkú gomb stílusa (DARKMODE)-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/MainRoundButton-DARKMODE.xaml" />
+                <!--A másodlagos gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SecondaryButton.xaml" />
+                <!--A másodlagos gomb stílusa (DARKMODE)-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SecondaryButton-DARKMODE.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
