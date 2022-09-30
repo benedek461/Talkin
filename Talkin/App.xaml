@@ -30,6 +30,14 @@
                 <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SecondaryButton.xaml" />
                 <!--A másodlagos gomb stílusa (DARKMODE)-->
                 <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SecondaryButton-DARKMODE.xaml" />
+                <!--A beállíások csoport gombok stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SettingGroupButton.xaml"/>
+                <!--Az ablakot teljes képernyőre állító gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/FullscreenButton.xaml"/>
+                <!--A kapcsolók stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/ToggleButton.xaml"/>
+                <!--A magas prioritású gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/HighPriorityButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
