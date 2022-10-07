@@ -38,6 +38,8 @@
                 <ResourceDictionary Source="/Assets/Themes/UI Element Styles/ToggleButton.xaml"/>
                 <!--A magas prioritású gomb stílusa-->
                 <ResourceDictionary Source="/Assets/Themes/UI Element Styles/HighPriorityButton.xaml"/>
+                <!--A beállítás gomb stílusa-->
+                <ResourceDictionary Source="/Assets/Themes/UI Element Styles/SettingsButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

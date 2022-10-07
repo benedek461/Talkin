@@ -9,7 +9,17 @@
         WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent" ResizeMode="NoResize">
-    
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:001" Storyboard.TargetProperty="Opacity" SpeedRatio="7">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <!--Az ablak-->
     <Border x:Name="LoginPanel" Style="{StaticResource WindowDesign}">
         
@@ -28,7 +38,12 @@
             
             <!--Felső vezérlő gombok-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Width="auto" VerticalAlignment="Top">
-                <Button x:Name="buttonMinimize" Style="{StaticResource MinimizeButtonDesign}" Margin="15 15 5 0"/>
+                <Button x:Name="buttonSettings" Style="{StaticResource SettingsButtonDesign}" Margin="0 15 5 0" Click="buttonSettings_Click">
+                    <StackPanel Height="25" Width="25" >
+                        <Image Source="/Assets/Themes/Icons/settings.png"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonMinimize" Style="{StaticResource MinimizeButtonDesign}" Margin="5 15 5 0"/>
                 <Button x:Name="buttonClose" Style="{StaticResource CloseButtonDesign}" Margin="5 15 15 0"/>
             </StackPanel>
             

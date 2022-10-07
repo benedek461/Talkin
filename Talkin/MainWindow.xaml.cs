@@ -24,5 +24,11 @@ namespace Talkin
         {
             InitializeComponent();
         }
+
+        private void buttonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            MainSettingsWindow msw = new MainSettingsWindow();
+            msw.Show();
+        }
     }
 }

@@ -9,6 +9,16 @@
         WindowStyle="None" WindowStartupLocation="CenterScreen"
         AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize">
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:03" Storyboard.TargetProperty="Opacity" SpeedRatio="7">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Border Style="{StaticResource WindowDesign}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -53,7 +63,7 @@
                             <Label Content="About"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonBack" Style="{StaticResource MainRoundButtonDesign}" Content="Back" Margin="5 185 5 5" Height="50"/>
+                    <Button x:Name="buttonBack" Style="{StaticResource MainRoundButtonDesign}" Content="Back" Margin="5 185 5 5" Height="50" Click="buttonBack_Click"/>
                 </StackPanel>
             </Border>
 

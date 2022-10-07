@@ -106,5 +106,10 @@ namespace Talkin
             AreYouSureWindow aysWindow = new AreYouSureWindow();
             aysWindow.Show();
         }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
