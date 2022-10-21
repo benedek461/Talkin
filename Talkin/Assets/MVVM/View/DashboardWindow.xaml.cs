@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Talkin.Assets.MVVM.Models;
+//using Talkin.Assets.MVVM.Models;
 
 namespace Talkin
 {
@@ -55,8 +55,7 @@ namespace Talkin
 
         private void buttonAddFriend_Click(object sender, RoutedEventArgs e)
         {
-            //List<User> friends = FriendListMethods.GetFriends();
-            //FriendListMethods.LoadFriends(friends, stackPanelFriends);
+
         }
     }
 }
