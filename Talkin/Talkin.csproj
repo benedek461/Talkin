@@ -74,7 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AreYouSureWindow.xaml">
+    <Page Include="Assets\MVVM\View\AreYouSureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,6 +83,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Themes\UI Element Styles\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\UI Element Styles\FriendChatButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,19 +150,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ForgotPasswordWindow.xaml">
+    <Page Include="Assets\MVVM\View\DashboardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginError.xaml">
+    <Page Include="Assets\MVVM\View\ForgotPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainSettingsWindow.xaml">
+    <Page Include="Assets\MVVM\View\LoginError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Assets\MVVM\View\MainSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -166,29 +174,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AreYouSureWindow.xaml.cs">
+    <Compile Include="Assets\MVVM\View\AreYouSureWindow.xaml.cs">
       <DependentUpon>AreYouSureWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ForgotPasswordWindow.xaml.cs">
+    <Compile Include="Assets\MVVM\View\DashboardWindow.xaml.cs">
+      <DependentUpon>DashboardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\View\ForgotPasswordWindow.xaml.cs">
       <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginError.xaml.cs">
+    <Compile Include="Assets\MVVM\View\LoginError.xaml.cs">
       <DependentUpon>LoginError.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainSettingsWindow.xaml.cs">
+    <Compile Include="Assets\MVVM\View\MainSettingsWindow.xaml.cs">
       <DependentUpon>MainSettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Assets\MVVM\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NoInternetErrorMessageWindow.xaml">
+    <Page Include="Assets\MVVM\View\NoInternetErrorMessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoInternetErrorMessageWindow.xaml.cs">
+    <Compile Include="Assets\MVVM\View\NoInternetErrorMessageWindow.xaml.cs">
       <DependentUpon>NoInternetErrorMessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -223,7 +234,6 @@
     <Folder Include="Assets\Core\" />
     <Folder Include="Assets\MVVM\Models\" />
     <Folder Include="Assets\MVVM\ViewModel\" />
-    <Folder Include="Assets\MVVM\View\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Themes\Backgrounds\LineTexture.png" />
@@ -271,6 +281,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Themes\Icons\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Icons\magnifier.png" />
+    <Resource Include="Assets\Themes\Icons\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Backgrounds\LoginPanelWallpaperDarker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Icons\beauty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Icons\logout.png" />
+    <Resource Include="Assets\Themes\Icons\photo.png" />
+    <Resource Include="Assets\Themes\Icons\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Themes\Icons\logoutWhite.png" />
+    <Resource Include="Assets\Themes\Icons\settingsWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
