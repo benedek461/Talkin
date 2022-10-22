@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 //using Talkin.Assets.MVVM.Models;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
     /// Interaction logic for DashboardWindow.xaml

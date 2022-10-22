@@ -1,4 +1,4 @@
-﻿ <Window x:Class="Talkin.DashboardWindow"
+﻿<Window x:Class="Talkin.Assets.MVVM.View.DashboardWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,16 @@
         Title="DashboardWindow" Height="720" Width="1280"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:001" Storyboard.TargetProperty="Opacity" SpeedRatio="7">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
 
     <!--Az ablak-->
     <Border Style="{StaticResource WindowDesign}">

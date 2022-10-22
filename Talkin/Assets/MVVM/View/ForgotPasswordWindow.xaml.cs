@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
     /// Interaction logic for ForgotPasswordWindow.xaml

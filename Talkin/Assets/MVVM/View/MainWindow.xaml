@@ -1,9 +1,9 @@
-﻿<Window x:Class="Talkin.MainWindow"
+﻿<Window x:Class="Talkin.Assets.MVVM.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Talkin"
+        xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
         Title="LoginScreen" Height="640" Width="480"
         WindowStyle="None" AllowsTransparency="True"
@@ -69,7 +69,11 @@
            
             <!--Bejelentkezés + "Elfelejettete-e a jelszót?" gomb-->
             <StackPanel Grid.Row="4">
-                <Button x:Name="buttonSignIn" Style="{StaticResource MainRoundButtonDesign}" Margin="15 15 15 0" Height="50" Width="200" Content="SIGN IN"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="buttonSignIn" Style="{StaticResource MainRoundButtonDesign}" Margin="30 15 10 0" Height="50" Width="200" Content="SIGN IN"/>
+                    <Button x:Name="buttonRegister" Style="{StaticResource MainRoundButtonDesign}" Margin="5 15 30 0" Height="50" Width="200" Content="REGISTER" Click="buttonRegister_Click"/>
+                </StackPanel>
+                
                 <Button x:Name="buttonForgotPWD" Style="{StaticResource SecondaryButtonDesign}" Margin="15 15 15 0" Height="auto" Width="150" Content="FORGET PASSWORD?"/>
             </StackPanel>
 
