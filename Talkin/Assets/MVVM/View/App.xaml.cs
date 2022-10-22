@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
     /// Interaction logic for App.xaml

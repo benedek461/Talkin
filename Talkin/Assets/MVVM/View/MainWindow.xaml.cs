@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -29,6 +29,12 @@ namespace Talkin
         {
             MainSettingsWindow msw = new MainSettingsWindow();
             msw.Show();
+        }
+
+        private void buttonRegister_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow rw = new RegistrationWindow();
+            rw.Show();
         }
     }
 }

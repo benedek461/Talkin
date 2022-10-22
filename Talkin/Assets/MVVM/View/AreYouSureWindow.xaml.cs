@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for LoginError.xaml
+    /// Interaction logic for AreYouSureWindow.xaml
     /// </summary>
-    public partial class LoginError : Window
+    public partial class AreYouSureWindow : Window
     {
-        public LoginError()
+        public AreYouSureWindow()
         {
             InitializeComponent();
+        }
+
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

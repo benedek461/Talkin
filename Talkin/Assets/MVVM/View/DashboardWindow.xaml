@@ -1,0 +1,341 @@
+﻿<Window x:Class="Talkin.Assets.MVVM.View.DashboardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Talkin"
+        mc:Ignorable="d"
+        Title="DashboardWindow" Height="720" Width="1280"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:001" Storyboard.TargetProperty="Opacity" SpeedRatio="7">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <!--Az ablak-->
+    <Border Style="{StaticResource WindowDesign}">
+        <Border.Background>
+            <ImageBrush ImageSource="/Assets/Themes/Backgrounds/LoginPanelWallpaperDarker.png" Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <!--A layout-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="363.429"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="101.714"/>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition Height="101.714"/>
+            </Grid.RowDefinitions> 
+
+            <!--A barátok lista ablak-->
+            <Border Style="{StaticResource WindowDesign}"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Grid.RowSpan="2"  
+                    Margin="20 20 0 20"
+                    Background="White">
+
+                <!--Keresősáv és a barátok listája-->
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto "/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Cím és keresősáv-->
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                        <Label Content="Friends" 
+                               FontFamily="Lime Days" 
+                               FontSize="24" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left"/>
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="0 0 0 5">
+                            <Image Source="/Assets/Themes/Icons/magnifier.png" 
+                                   Stretch="UniformToFill" 
+                                   Height="35" Width="35"/>
+                            <Grid>
+                                <TextBox x:Name="textBoxSearchFriend" 
+                                         Style="{StaticResource TextBoxDesign}" 
+                                         Margin="10,0,10,0" 
+                                         VerticalAlignment="Center" 
+                                         HorizontalAlignment="Stretch"
+                                         FontSize="20"
+                                         FontFamily="laCartoonerie"/>
+                                <TextBlock IsHitTestVisible="False" 
+                                           Text="Search for a friend here..." 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Left" 
+                                           Margin="10,0,10,0" 
+                                           Foreground="DarkGray"
+                                           FontSize="20"
+                                           FontFamily="laCartoonerie">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=textBoxSearchFriend}" 
+                                                             Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                        <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" 
+                               Height="5" 
+                               HorizontalAlignment="Center" 
+                               Stretch="Fill"
+                               Margin="0 0 0 10"/>
+                    </StackPanel>
+                    <!--A barátokat tartalmazó görgethető menü-->
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+                                      VerticalScrollBarVisibility="Auto" 
+                                      VerticalAlignment="Stretch" 
+                                      HorizontalAlignment="Stretch"
+                                      Grid.Column="0" Grid.Row="1"
+                                      Margin="0 0 0 5"
+                                      ScrollViewer.CanContentScroll="True">
+                        <StackPanel x:Name="stackPanelFriends" Orientation="Vertical">
+                            <Button x:Name="buttonFriend" Style="{StaticResource FriendChatButtonDesign}" Background="White" HorizontalContentAlignment="Left" Margin="0 0 0 5" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Image Source="/Assets/Themes/Icons/man.png" Width="50" Height="50"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="kovacsbelaistvan87" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                        <Label Content="Akkor holnap ráérsz?" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="laCartoonerie"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!--Barát hozzáadása és a barát törlése gombok-->
+                    <StackPanel Grid.Row="2" 
+                                Grid.Column="0" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center">
+                        <Button x:Name="buttonAddFriend" Style="{StaticResource MainRoundButtonDesign}" Content="Add Friend" FontSize="18" Margin="5" Width="auto" MinWidth="140" MinHeight="50" Click="buttonAddFriend_Click"/>
+                        <Button x:Name="buttonDeleteFriend" Style="{StaticResource HighPriorityButtonDesign}" Content="Delete Friend" FontSize="18" Margin="5" Width="auto" MinWidth="140" MinHeight="50"/>
+                    </StackPanel>
+                </Grid> 
+            </Border>
+            
+            <!--Az aktuálisan bejelentkeztetett felhasználó kép, neve, as kijelentkeztető és beállítások gomb-->
+            <Border Style="{StaticResource WindowDesign}" 
+                    Background="White"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="20 0 0 20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
+                                VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                Margin="10 10 5 10">
+                        <Image Source="/Assets/Themes/Icons/man.png" Width="50" Height="50"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                Margin="0 10 5 10">
+                        <Label Content="benedek461" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="Lime Days"/>
+                        <Label Content="ID: #1451" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="laCartoonerie"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                                VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                Margin="0 10 10 10">
+                        <Button x:Name="buttonOpenSettings" Style="{StaticResource MainRoundButtonDesign}" Height="50" Width="50" Click="buttonOpenSettings_Click">
+                            <Image Source="/Assets/Themes/Icons/settingsWhite.png" Width="30" Height="30"/>
+                        </Button>
+                        <Button x:Name="buttonLogout" Style="{StaticResource HighPriorityButtonDesign}" Height="50" Width="50" Margin="10 0 0 0">
+                            <Image Source="/Assets/Themes/Icons/logoutWhite.png" Width="30" Height="30"/>
+                        </Button>
+                    </StackPanel>
+                </Grid> 
+            </Border>
+            
+            <!--A felső vezérlőgombok-->
+            <Border Style="{StaticResource WindowDesign}" 
+                    Background="White"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="20 20 20 0">
+                <Grid Margin="10 0 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right">
+                        <Button x:Name="buttonMinimize" Style="{StaticResource MinimizeButtonDesign }" Margin="0 0 10 0" Click="buttonMinimize_Click"/>
+                        <Button x:Name="buttonToggleFullscreen" Style="{StaticResource CloseButtonDesign }" Content="❐" FontSize="25" Margin="0 0 10 0" Click="buttonToggleFullscreen_Click"/>
+                        <Button x:Name="buttonClose" Style="{StaticResource CloseButtonDesign }" Click="buttonClose_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Column="0"
+                                HorizontalAlignment="Left">
+                        <Image x:Name="imageCurrentChatPartnerPicture" Source="/Assets/Themes/Icons/man.png" Width="50" Height="50"/>
+                        <Label x:Name="labelCurrentChatPartnerUserName" Content="kovacsbelaistvan87" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="Lime Days"/>
+                    </StackPanel>
+                </Grid>  
+            </Border>
+
+            <!--A chatüzenetek ablaka-->
+            <Border Style="{StaticResource WindowDesign}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20 20 20 20">
+                <Grid Margin="10">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Style="{StaticResource WindowDesign}"
+                                    Grid.Column="0" Grid.Row="0"
+                                    Height="auto"
+                                    Background="White"
+                                    HorizontalAlignment="Left"
+                                    Margin="0 0 0 5">
+                                <TextBlock Text="Na csá!" VerticalAlignment="Center" FontFamily="laCartoonerie" FontSize="20" Padding="20 10 20 10"/>
+                            </Border>
+                            <Border Style="{StaticResource WindowDesign}"
+                                    Grid.Column="1" Grid.Row="1"
+                                    Height="auto"
+                                    Background="#f9b233"
+                                    HorizontalAlignment="Right">
+                                <TextBlock Text="Szevasz!" VerticalAlignment="Center" FontFamily="laCartoonerie" FontSize="20" Padding="20 10 20 10"/>
+                            </Border>
+                            <Border Style="{StaticResource WindowDesign}"
+                                    Grid.Column="0" Grid.Row="2"
+                                    Height="auto"
+                                    Background="White"
+                                    HorizontalAlignment="Left"
+                                    Margin="0 0 0 5">
+                                <TextBlock Text="Akkor holnap ráérsz?" VerticalAlignment="Center" FontFamily="laCartoonerie" FontSize="20" Padding="20 10 20 10"/>
+                            </Border>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!--Az chatüzenet bemeneti ablaka-->
+            <Border Style="{StaticResource WindowDesign}" 
+                    Background="White"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="20 0 20 20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                Grid.Column="0"
+                                Margin="20 0 10 0">
+                        <Button Style="{StaticResource SettingsButtonDesign}">
+                            <Image Source="/Assets/Themes/Icons/photo.png" Width="30" Height="30"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Margin="5 0 5 0">
+                        <Grid>
+                            <TextBox x:Name="textBoxChatMessageToSend" 
+                                         Style="{StaticResource TextBoxDesign}" 
+                                         Margin="5,0,5,0" 
+                                         VerticalAlignment="Center" 
+                                         HorizontalAlignment="Stretch"
+                                         FontSize="20"
+                                         FontFamily="laCartoonerie"/>
+                            <TextBlock IsHitTestVisible="False" 
+                                           Text="Enter your message here..." 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Left"  
+                                           Foreground="DarkGray"
+                                           FontSize="20"
+                                           FontFamily="laCartoonerie"
+                                           Margin="5 0 5 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=textBoxChatMessageToSend}" 
+                                                             Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                        <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" 
+                               Height="5" 
+                               HorizontalAlignment="Center" 
+                               Stretch="Fill"
+                               Margin="5 0 5 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Grid.Column="2"
+                                Margin="10 0 20 0">
+                        <Button Style="{StaticResource SettingsButtonDesign}">
+                            <Image Source="/Assets/Themes/Icons/send.png" Width="30" Height="30"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+</Window>
+
+
+<!--<ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+                                      VerticalScrollBarVisibility="Auto" 
+                                      VerticalAlignment="Stretch" 
+                                      HorizontalAlignment="Stretch">
+        <StackPanel>
+
+        </StackPanel>
+    </ScrollViewer> 
+    -->

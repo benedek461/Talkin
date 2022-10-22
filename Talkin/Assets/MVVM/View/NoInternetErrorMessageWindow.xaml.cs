@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Talkin
+namespace Talkin.Assets.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for ForgotPasswordWindow.xaml
+    /// Interaction logic for NoInternetErrorMessageWindow.xaml
     /// </summary>
-    public partial class ForgotPasswordWindow : Window
+    public partial class NoInternetErrorMessageWindow : Window
     {
-        public ForgotPasswordWindow()
+        public NoInternetErrorMessageWindow()
         {
             InitializeComponent();
+        }
+
+        private void buttonOK_CYC_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
