@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -28,7 +29,7 @@ namespace Talkin.Assets.MVVM.View
             SetDefaultDateAttributes(this);
         }
 
-        public static void FillDateAttributes(RegistrationWindow rw)
+        private void FillDateAttributes(RegistrationWindow rw)
         {
             for (int i = DateTime.Today.Year; i >= 1900; i--)
             {
@@ -48,14 +49,15 @@ namespace Talkin.Assets.MVVM.View
             }
         }
 
-        public static void SetDefaultDateAttributes(RegistrationWindow rw)
+        private void SetDefaultDateAttributes(RegistrationWindow rw)
         {
             rw.comboBoxMonth.SelectedItem = rw.comboBoxMonth.Items.GetItemAt(0);
             rw.comboBoxMonth.SelectedItem = rw.comboBoxMonth.Items.GetItemAt(0);
             rw.comboBoxDay.SelectedItem = rw.comboBoxDay.Items.GetItemAt(0);
+            rw.comboBoxSex.SelectedItem = rw.comboBoxSex.Items.GetItemAt(0);
         }
 
-        public void CalculateDays(string selectedMonth)
+        private void CalculateDays(string selectedMonth)
         {
             switch (selectedMonth)
             {
@@ -261,6 +263,53 @@ namespace Talkin.Assets.MVVM.View
             }
         }
 
+        private bool isUsernameUsed(string username)
+        {
+            try
+            {
+                string connectionString = "Data Source=DESKTOP-4EFJV65\\SQLEXPRESS;Initial Catalog=TalkinDatabase;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(connectionString);
+                
+                connection.Open();
+                string query = "SELECT username FROM [User]";
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                while(dataReader.Read())
+                {
+                    if (dataReader.GetString(0) == username)
+                    {
+                        MessageBox.Show("Foglalt");
+                        dataReader.Close();
+                        connection.Close();
+                        return true;
+                    }
+                }
+                dataReader.Close();
+                connection.Close();
+                return false;
+            }
+            catch
+            {
+                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                niemw.Show();
+                MessageBox.Show("isUsernameUsed ERROR");
+                return false;
+            }
+        }
+        
+        private bool isPasswordConfirmationValid(string password, string passwordInConfirm)
+        {
+            if(password != passwordInConfirm)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         private void comboBoxMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedMonth = comboBoxMonth.SelectedItem.ToString();
@@ -285,7 +334,66 @@ namespace Talkin.Assets.MVVM.View
 
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
+            string connectionString = "Data Source=DESKTOP-4EFJV65\\SQLEXPRESS;Initial Catalog=TalkinDatabase;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
 
+            string query = "INSERT INTO [User] (username, password, sex, email, firstname, lastname, dateofbirth) " +
+                           "VALUES (@username, @password, @sex, @email, @firstname, @lastname, @dateofbirth)";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@username", textBoxUsername.Text);
+            command.Parameters.AddWithValue("@password", textBoxPassword.Password);
+            ComboBoxItem cbi = (ComboBoxItem)comboBoxSex.SelectedItem;
+            string selectedSex = cbi.Content.ToString();
+            command.Parameters.AddWithValue("@sex", selectedSex);
+            command.Parameters.AddWithValue("@email", textBoxEmail.Text);
+            command.Parameters.AddWithValue("@firstname", textBoxFirstname.Text);
+            command.Parameters.AddWithValue("@lastname", textBoxLastname.Text);
+            command.Parameters.AddWithValue(
+                "@dateofbirth", comboBoxYear.SelectedValue.ToString() + "/" + comboBoxMonth.SelectedValue.ToString() + "/" + comboBoxDay.SelectedValue.ToString());
+
+            try
+            {
+                connection.Open();
+
+                if (textBoxUsername.Text == "" | textBoxPassword.Password == "" | selectedSex == "" | textBoxEmail.Text == "" | textBoxFirstname.Text == "" |
+                        textBoxLastname.Text == "" | comboBoxMonth.SelectedValue.ToString() == "" |
+                        comboBoxDay.SelectedValue.ToString() == "")
+                {
+                    RegistrationError re = new RegistrationError();
+                    re.labelErrorMessage.Content = "You left one or more field empty!";
+                    re.Show();
+                }
+                else if (!isUsernameUsed(textBoxUsername.Text) && isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password))
+                {
+                    int affectedRows = command.ExecuteNonQuery();
+                }
+                else if (isUsernameUsed(textBoxUsername.Text))
+                {
+                    RegistrationError re = new RegistrationError();
+                    re.labelErrorMessage.Content = "This username is used";
+                    re.Show();
+                }
+                else if (!isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password))
+                {
+                    RegistrationError re = new RegistrationError();
+                    re.labelErrorMessage.Content = "Passwords doesn't match!";
+                    re.Show();
+                }
+                else if (!isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password) && !isUsernameUsed(textBoxUsername.Text))
+                {
+                    RegistrationError re = new RegistrationError();
+                    re.labelErrorMessage.Content = "Passwords doesn't match and username is used!";
+                    re.Show();
+                }
+
+                command.Dispose();
+                connection.Close();
+            }
+            catch
+            {
+                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                niemw.Show();
+            }
         }
     }
 }
