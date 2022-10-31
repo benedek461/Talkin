@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\MVVM\View\RegistrationSuccessful.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\MVVM\View\RegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +216,9 @@
     </Compile>
     <Compile Include="Assets\MVVM\View\RegistrationError.xaml.cs">
       <DependentUpon>RegistrationError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\View\RegistrationSuccessful.xaml.cs">
+      <DependentUpon>RegistrationSuccessful.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\MVVM\View\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
