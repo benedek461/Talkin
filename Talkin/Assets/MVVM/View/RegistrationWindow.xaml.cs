@@ -366,6 +366,8 @@ namespace Talkin.Assets.MVVM.View
                 else if (!isUsernameUsed(textBoxUsername.Text) && isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password))
                 {
                     int affectedRows = command.ExecuteNonQuery();
+                    RegistrationSuccessful rs = new RegistrationSuccessful();
+                    rs.labelMessage.Content = "Registration was successful!";
                 }
                 else if (isUsernameUsed(textBoxUsername.Text))
                 {
