@@ -70,7 +70,7 @@
             <!--Bejelentkezés + "Elfelejettete-e a jelszót?" gomb-->
             <StackPanel Grid.Row="4">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="buttonSignIn" Style="{StaticResource MainRoundButtonDesign}" Margin="30 15 10 0" Height="50" Width="200" Content="SIGN IN"/>
+                    <Button x:Name="buttonSignIn" Style="{StaticResource MainRoundButtonDesign}" Margin="30 15 10 0" Height="50" Width="200" Content="SIGN IN" Click="buttonSignIn_Click"/>
                     <Button x:Name="buttonRegister" Style="{StaticResource MainRoundButtonDesign}" Margin="5 15 30 0" Height="50" Width="200" Content="REGISTER" Click="buttonRegister_Click"/>
                 </StackPanel>
                 

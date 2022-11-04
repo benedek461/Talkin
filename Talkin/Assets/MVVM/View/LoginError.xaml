@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Talkin"
+        xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
         Title="LoginErrorMessageWindow" Height="200" Width="400"
-        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -25,10 +26,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Wrong username or password!" FontFamily="Lime Days" FontSize="22"
+            <Label x:Name="labelMessage" Grid.Row="0" Content="Wrong username or password!" FontFamily="Lime Days" FontSize="22"
                    VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             <Button x:Name="buttonOK_WUOR" Grid.Row="1" Style="{StaticResource MainRoundButtonDesign}" 
-                    Content="OK" Height="50" Width="200" HorizontalAlignment="Center"/>
+                    Content="OK" Height="50" Width="200" HorizontalAlignment="Center" Click="buttonOK_WUOR_Click"/>
             
         </Grid>
     </Border>

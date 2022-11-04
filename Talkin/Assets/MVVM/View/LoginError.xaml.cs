@@ -23,5 +23,10 @@ namespace Talkin.Assets.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void buttonOK_WUOR_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
