@@ -79,7 +79,7 @@ namespace Talkin.Assets.MVVM.View
                 case "02":
                     comboBoxDay.Items.Clear();
                     string selectedYear = comboBoxYear.SelectedItem.ToString();
-                    if (Int32.Parse(selectedYear) % 4 == 0)
+                    if (DateTime.IsLeapYear(Int32.Parse(selectedYear)))
                     {
                         for (int i = 1; i <= 29; i++)
                         {
@@ -368,6 +368,7 @@ namespace Talkin.Assets.MVVM.View
                     int affectedRows = command.ExecuteNonQuery();
                     RegistrationSuccessful rs = new RegistrationSuccessful();
                     rs.labelMessage.Content = "Registration was successful!";
+                    rs.Show();
                 }
                 else if (isUsernameUsed(textBoxUsername.Text))
                 {
