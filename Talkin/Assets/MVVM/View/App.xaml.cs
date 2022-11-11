@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows;
+using Talkin.Assets.Helpers;
 
 namespace Talkin.Assets.MVVM.View
 {
@@ -13,5 +16,9 @@ namespace Talkin.Assets.MVVM.View
     /// </summary>
     public partial class App : Application
     {
+        public App() 
+        {
+            APIHelper.InitializeClient();
+        }
     }
 }

@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +18,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Talkin.Assets.Helpers;
+using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
 {
@@ -332,69 +338,77 @@ namespace Talkin.Assets.MVVM.View
             Close();
         }
 
-        private void buttonRegister_Click(object sender, RoutedEventArgs e)
+        private bool isRegistrationValid()
         {
-            string connectionString = "Data Source=DESKTOP-4EFJV65\\SQLEXPRESS;Initial Catalog=TalkinDatabase;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            string query = "INSERT INTO [User] (username, password, sex, email, firstname, lastname, dateofbirth) " +
-                           "VALUES (@username, @password, @sex, @email, @firstname, @lastname, @dateofbirth)";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@username", textBoxUsername.Text);
-            command.Parameters.AddWithValue("@password", textBoxPassword.Password);
+            //Minden mező ki van töltve?
             ComboBoxItem cbi = (ComboBoxItem)comboBoxSex.SelectedItem;
             string selectedSex = cbi.Content.ToString();
-            command.Parameters.AddWithValue("@sex", selectedSex);
-            command.Parameters.AddWithValue("@email", textBoxEmail.Text);
-            command.Parameters.AddWithValue("@firstname", textBoxFirstname.Text);
-            command.Parameters.AddWithValue("@lastname", textBoxLastname.Text);
-            command.Parameters.AddWithValue(
-                "@dateofbirth", comboBoxYear.SelectedValue.ToString() + "/" + comboBoxMonth.SelectedValue.ToString() + "/" + comboBoxDay.SelectedValue.ToString());
-
-            try
-            {
-                connection.Open();
-
-                if (textBoxUsername.Text == "" | textBoxPassword.Password == "" | selectedSex == "" | textBoxEmail.Text == "" | textBoxFirstname.Text == "" |
+            if (textBoxUsername.Text == "" | textBoxPassword.Password == "" | selectedSex == "" | textBoxEmail.Text == "" | textBoxFirstname.Text == "" |
                         textBoxLastname.Text == "" | comboBoxMonth.SelectedValue.ToString() == "" |
                         comboBoxDay.SelectedValue.ToString() == "")
+            {
+                RegistrationError re = new RegistrationError();
+                re.labelErrorMessage.Content = "You left one or more field empty!";
+                re.Show();
+                return false;
+            }
+            //Egyeznek a jelszavak?
+            else if (!(textBoxPassword.Password == textBoxConfirmPassword.Password))
+            {
+                RegistrationError re = new RegistrationError();
+                re.labelErrorMessage.Content = "Passwords doesn't match!";
+                re.Show();
+                return false;
+            }
+            //Létezik felhasználó az adott felhasználónévvel?
+            string username = textBoxUsername.Text;
+            var url = $"https://localhost:7063/api/User/GetSpecifiedUserByUsername/{username}";
+            var client = APIHelper.client;
+
+            var response = client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private async void buttonRegister_Click(object sender, RoutedEventArgs e)
+        {
+            var url = "https://localhost:7063/api/User/RegisterUser";
+            var client = APIHelper.client;
+
+            ComboBoxItem cbi = (ComboBoxItem)comboBoxSex.SelectedItem;
+            var newUser = new User()
+            {
+                userName = textBoxUsername.Text,
+                password = textBoxPassword.Password,
+                email = textBoxEmail.Text,
+                sex = cbi.Content.ToString(),
+                firstName = textBoxFirstname.Text,
+                lastName = textBoxLastname.Text,
+                dateOfBirth = comboBoxYear.SelectedValue.ToString() + "/" +
+                              comboBoxMonth.SelectedValue.ToString() + "/" +
+                              comboBoxDay.SelectedValue.ToString()
+            };
+
+            if (isRegistrationValid())
+            {
+                var response = await client.PostAsJsonAsync(url, newUser);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    RegistrationError re = new RegistrationError();
-                    re.labelErrorMessage.Content = "You left one or more field empty!";
-                    re.Show();
-                }
-                else if (!isUsernameUsed(textBoxUsername.Text) && isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password))
-                {
-                    int affectedRows = command.ExecuteNonQuery();
                     RegistrationSuccessful rs = new RegistrationSuccessful();
                     rs.labelMessage.Content = "Registration was successful!";
+                    rs.Show();
                 }
-                else if (isUsernameUsed(textBoxUsername.Text))
+                else
                 {
-                    RegistrationError re = new RegistrationError();
-                    re.labelErrorMessage.Content = "This username is used";
-                    re.Show();
+                    NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                    niemw.Show();
                 }
-                else if (!isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password))
-                {
-                    RegistrationError re = new RegistrationError();
-                    re.labelErrorMessage.Content = "Passwords doesn't match!";
-                    re.Show();
-                }
-                else if (!isPasswordConfirmationValid(textBoxPassword.Password, textBoxConfirmPassword.Password) && !isUsernameUsed(textBoxUsername.Text))
-                {
-                    RegistrationError re = new RegistrationError();
-                    re.labelErrorMessage.Content = "Passwords doesn't match and username is used!";
-                    re.Show();
-                }
-
-                command.Dispose();
-                connection.Close();
-            }
-            catch
-            {
-                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
-                niemw.Show();
             }
         }
     }

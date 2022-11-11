@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Talkin.Assets.Helpers;
+using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
 {
@@ -38,51 +41,39 @@ namespace Talkin.Assets.MVVM.View
             rw.Show();
         }
 
-        private void buttonSignIn_Click(object sender, RoutedEventArgs e)
+        private async void buttonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "Data Source=DESKTOP-4EFJV65\\SQLEXPRESS;Initial Catalog=TalkinDatabase;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionString);
+            var url = "https://localhost:7063/api/User/Login";
 
-            try
+            var client = APIHelper.client;
+            
+            var user = new User()
             {
-                connection.Open();
-                
-                string query = "SELECT COUNT(1) FROM [User] WHERE username=@username AND password=@password";
-                
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@username", textBoxUsername.Text);
-                command.Parameters.AddWithValue("@password", passwordBoxUsername.Password);
-                
-                int count = Convert.ToInt32(command.ExecuteScalar());
+                userName = textBoxUsername.Text,
+                password = passwordBoxUsername.Password
+            };
 
-                if (textBoxUsername.Text == "" || passwordBoxUsername.Password == "")
+            if (textBoxUsername.Text != "" && passwordBoxUsername.Password != "")
+            {
+                var response = await client.PostAsJsonAsync(url, user);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    LoginError le = new LoginError();
-                    le.labelMessage.Content = "One or more field(s) are empty!";
-                    le.Show();
-                }
-                else if (count == 1)
-                {
-                    DashboardWindow dashboardWindow = new DashboardWindow();
-                    dashboardWindow.Show();
-                    Close();
+                    DashboardWindow dw = new DashboardWindow();
+                    dw.Show();
                 }
                 else
                 {
-                    LoginError le = new LoginError();
-                    le.Show();
+                    NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                    niemw.Show();
                 }
-
             }
-            catch
+            else
             {
-                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
-                niemw.Show();
-            }
-            finally
-            {
-                connection.Close();
-            }
+                LoginError le = new LoginError();
+                le.labelMessage.Content = "One or more field(s) are empty!";
+                le.Show();
+            } 
         }
     }
 }
