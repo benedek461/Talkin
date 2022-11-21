@@ -360,25 +360,16 @@ namespace Talkin.Assets.MVVM.View
                 re.Show();
                 return false;
             }
-            //Létezik felhasználó az adott felhasználónévvel?
-            string username = textBoxUsername.Text;
-            var url = $"https://localhost:7063/api/User/GetSpecifiedUserByUsername/{username}";
-            var client = APIHelper.client;
-
-            var response = client.GetAsync(url).Result;
-
-            if (response.IsSuccessStatusCode)
+            else
             {
-                return false;
+                return true;
             }
-
-            return true;
         }
 
-        private async void buttonRegister_Click(object sender, RoutedEventArgs e)
+        private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
-            var url = "https://localhost:7063/api/User/RegisterUser";
-            var client = APIHelper.client;
+            HttpClient client = APIHelper.client;
+            var endpoint = new Uri("https://localhost:44394/register");
 
             ComboBoxItem cbi = (ComboBoxItem)comboBoxSex.SelectedItem;
             var newUser = new User()
@@ -396,20 +387,21 @@ namespace Talkin.Assets.MVVM.View
 
             if (isRegistrationValid())
             {
-                var response = await client.PostAsJsonAsync(url, newUser);
+                var newPostJson = JsonConvert.SerializeObject(newUser);
+                var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
 
-                if (response.IsSuccessStatusCode)
-                {
-                    RegistrationSuccessful rs = new RegistrationSuccessful();
-                    rs.labelMessage.Content = "Registration was successful!";
-                    rs.Show();
-                }
-                else
-                {
-                    NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
-                    niemw.Show();
-                }
+                RegistrationSuccessful rs = new RegistrationSuccessful();
+                rs.labelMessage.Content = "Registration was successful!";
+                rs.Show();
             }
+            else
+            {
+                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                niemw.Show();
+            }
+            
+            
         }
     }
 }

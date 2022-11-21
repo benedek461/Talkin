@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Talkin.Assets.MVVM.Models
+namespace AuthenticationServer.API.Models.Data_Transfer_Objects
 {
-    public class User
+    public class RegisterDTO
     {
-        public Guid user_ID { get; set; }
+        [Required]
         public string userName { get; set; }
+        [Required]
         public string password { get; set; }
+        [Required]
         public string sex { get; set; }
+        [Required]
+        [EmailAddress]
         public string email { get; set; }
+        [Required]
         public string firstName { get; set; }
+        [Required]
         public string lastName { get; set; }
+        [Required]
         public string dateOfBirth { get; set; }
     }
 }

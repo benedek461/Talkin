@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace Talkin.Assets.MVVM.Models
+namespace AuthenticationServer.API.Models.Domain_Objects
 {
     public class User
     {
+        [Key]
         public Guid user_ID { get; set; }
         public string userName { get; set; }
-        public string password { get; set; }
+        public string PasswordHash { get; set; }
         public string sex { get; set; }
         public string email { get; set; }
         public string firstName { get; set; }

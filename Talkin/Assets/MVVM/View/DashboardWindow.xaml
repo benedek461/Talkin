@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Talkin"
+        xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
         Title="DashboardWindow" Height="720" Width="1280"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
@@ -172,7 +172,7 @@
                         <Button x:Name="buttonOpenSettings" Style="{StaticResource MainRoundButtonDesign}" Height="50" Width="50" Click="buttonOpenSettings_Click">
                             <Image Source="/Assets/Themes/Icons/settingsWhite.png" Width="30" Height="30"/>
                         </Button>
-                        <Button x:Name="buttonLogout" Style="{StaticResource HighPriorityButtonDesign}" Height="50" Width="50" Margin="10 0 0 0">
+                        <Button x:Name="buttonLogout" Style="{StaticResource HighPriorityButtonDesign}" Height="50" Width="50" Margin="10 0 0 0" Click="buttonLogout_Click">
                             <Image Source="/Assets/Themes/Icons/logoutWhite.png" Width="30" Height="30"/>
                         </Button>
                     </StackPanel>

@@ -220,6 +220,7 @@
     </Page>
     <Compile Include="Assets\Helpers\APIHelper.cs" />
     <Compile Include="Assets\MVVM\Models\Conversation.cs" />
+    <Compile Include="Assets\MVVM\Models\Globals.cs" />
     <Compile Include="Assets\MVVM\Models\Message.cs" />
     <Compile Include="Assets\MVVM\Models\User.cs" />
     <Compile Include="Assets\MVVM\View\App.xaml.cs">
@@ -283,6 +284,7 @@
     <Resource Include="Assets\Fonts\laCartoonerie.TTF" />
     <Resource Include="Assets\Fonts\Lime Days.ttf" />
     <Resource Include="Assets\Fonts\Shining Monday.otf" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
