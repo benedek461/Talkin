@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="985" Width="520"
+        Title="RegistrationWindow" Height="650" Width="520"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None">
@@ -24,7 +24,8 @@
         <Border.Background>
             <ImageBrush ImageSource="/Assets/Themes/Backgrounds/LoginPanelWallpaperDarker.png" Stretch="UniformToFill"/>
         </Border.Background>
-        <Grid>
+        <ScrollViewer>
+            <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -101,6 +102,7 @@
                 </StackPanel>
             </Border>
         </Grid>
+        </ScrollViewer>
     </Border>
     
 </Window>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,9 +43,11 @@ namespace Talkin.Assets.MVVM.View
             rw.Show();
         }
 
-        private async void buttonSignIn_Click(object sender, RoutedEventArgs e)
+        private void buttonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            var url = "https://localhost:7063/api/User/Login";
+            string username = "";
+            var endpoint = new Uri("https://localhost:44394/login");
+            var endpoint2 = new Uri($"https://localhost:44394/getUser/{username}");
 
             var client = APIHelper.client;
             
@@ -53,12 +57,42 @@ namespace Talkin.Assets.MVVM.View
                 password = passwordBoxUsername.Password
             };
 
+
             if (textBoxUsername.Text != "" && passwordBoxUsername.Password != "")
             {
-                var response = await client.PostAsJsonAsync(url, user);
+                var newPostJson = JsonConvert.SerializeObject(user);
+                var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
 
-                if (response.IsSuccessStatusCode)
+                dynamic jsonData = JObject.Parse(result);
+
+
+                if (result != null)
                 {
+                    Properties.Settings.Default.UserToken = jsonData.accessToken;
+                    MessageBox.Show(Properties.Settings.Default.UserToken);
+
+                    /*
+                    username = user.userName;
+                    var result2 = client.GetAsync(endpoint2).Result;
+                    var json = result2.Content.ReadAsStringAsync().Result;
+
+                    dynamic jsonData2 = JObject.Parse(json);
+
+                    User currentUser = new User
+                    {
+                        userName = jsonData2.username,
+                        sex = jsonData2.sex,
+                        password = passwordBoxUsername.Password,
+                        email = jsonData2.email,
+                        firstName = jsonData2.firstName,
+                        lastName = jsonData2.lastName,
+                        dateOfBirth = jsonData2.dateOfBirth
+                    };
+
+                    Globals.LoggedInUser = currentUser;
+                    */
+
                     DashboardWindow dw = new DashboardWindow();
                     dw.Show();
                 }
@@ -73,7 +107,7 @@ namespace Talkin.Assets.MVVM.View
                 LoginError le = new LoginError();
                 le.labelMessage.Content = "One or more field(s) are empty!";
                 le.Show();
-            } 
+            }
         }
     }
 }

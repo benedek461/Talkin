@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Talkin.Assets.Helpers;
 //using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
@@ -56,6 +58,21 @@ namespace Talkin.Assets.MVVM.View
         private void buttonAddFriend_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void buttonLogout_Click(object sender, RoutedEventArgs e)
+        {
+            var endpoint = new Uri("https://localhost:44394/logout");
+
+            HttpClient client = APIHelper.client;
+
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer" + " " + Properties.Settings.Default.UserToken);
+
+            await client.DeleteAsync(endpoint);
+
+            Properties.Settings.Default.UserToken = string.Empty;
+
+            this.Close();
         }
     }
 }

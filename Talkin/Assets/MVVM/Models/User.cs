@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Talkin.Assets.MVVM.Models
 {
-    internal class User
+    public class User
     {
         public Guid user_ID { get; set; }
         public string userName { get; set; }
