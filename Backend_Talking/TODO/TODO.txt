@@ -1,0 +1,6 @@
+﻿1. lépés - Modell átírás
+
+2. lépés - Chat scenario:
+Add Conversation ---> Összes felhasználót megjelenítő lista --> Kiválasztok egyet --> Rányomok arra, hogy Start Conversation 
+---> Bal oldalon a friends listában megjelenik az illető
+
