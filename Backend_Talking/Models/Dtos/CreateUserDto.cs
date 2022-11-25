@@ -8,9 +8,17 @@ namespace ChatAPI.Models.Dtos
         [Required]
         public string Email { get; set; }
         [Required]
+        public string userName { get; set; }
+        [Required]
         public string Password { get; set; }
+        /*
         [Required]
         public string Name { get; set; }
+        */
+        [Required]
+        public string firstName { get; set; }
+        [Required] 
+        public string lastName { get; set; }
         [Required]
         public string Birthday { get; set; }
         [Required]

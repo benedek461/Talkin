@@ -38,6 +38,13 @@ namespace ChatAPI.Repositories
                 .FirstOrDefaultAsync(user => user.Id == id);
         }
 
+        public Task<User?> GetByUsernameAsync(string username)
+        {
+            return _chatDbContext.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(user => user.userName == username);
+        }
+
         public Task<List<User>> GetUsersAsync()
         {
             return _chatDbContext.Users

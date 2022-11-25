@@ -36,6 +36,7 @@ namespace ChatAPI.Services
             }
         }
 
+
         public async Task<bool> ValidateEmailAsync(string email)
         {
             if (await _userRepository.GetByEmailAsync(email) == null)
@@ -43,6 +44,27 @@ namespace ChatAPI.Services
                 return true;
             }
             return false;
+        }
+
+        public async Task<bool> ValidateUsernameAsync(string username)
+        {
+            if (await _userRepository.GetByUsernameAsync(username) == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<User?> GetUserByUsernameAsync(string username)
+        {
+            try
+            {
+                return await _userRepository.GetByUsernameAsync(username);
+            }
+            catch
+            {
+                throw new ChatApiException((int)ErrorCodes.DatabaseError);
+            }
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)

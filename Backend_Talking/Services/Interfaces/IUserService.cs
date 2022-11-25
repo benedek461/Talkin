@@ -8,6 +8,8 @@ namespace ChatAPI.Services.Interfaces
         Task<User> RegisterUserAsync(CreateUserDto createUserDto);
         Task<bool> ValidateEmailAsync(string email);
         Task<User?> GetUserByEmailAsync(string email);
+        Task<User?> GetUserByUsernameAsync(string username);
+        Task<bool> ValidateUsernameAsync(string username);
         Task<User?> GetUserAsync();
         Task<List<UserDto>> GetUsersAsync();
     }

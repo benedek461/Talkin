@@ -15,7 +15,8 @@ namespace ChatAPI.Services
 
         public async Task<User?> LoginAsync(LoginDto loginDto)
         {
-            var user = await _userService.GetUserByEmailAsync(loginDto.Email);
+            //var user = await _userService.GetUserByEmailAsync(loginDto.Email);
+            var user = await _userService.GetUserByUsernameAsync(loginDto.userName);
 
             if (user == null || user.Password != loginDto.Password)
             {
