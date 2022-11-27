@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="1000" Width="540"
+        Title="RegistrationWindow" MaxHeight="1000" MaxWidth="540"
+        MinWidth="540" MinHeight="650"
+        WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True" Background="Transparent"
-        WindowStyle="None" ResizeMode="CanResizeWithGrip">
+        Background="Transparent" ResizeMode="CanResizeWithGrip" MouseDown="Window_MouseDown">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -109,86 +110,88 @@
         <Border.Background>
             <ImageBrush ImageSource="/Assets/Themes/Backgrounds/LoginPanelWallpaperDarker.png" Stretch="UniformToFill"/>
         </Border.Background>
-        
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <Border Background="Transparent" Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            <Border Style="{StaticResource WindowDesign}" Margin="20" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="2" Background="White">
-                <StackPanel x:Name="stackPanelPersonalData"  Orientation="Vertical">
-                    <Label Content="Register a Talkin' account" FontSize="24" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Center" Margin="30 15 30 0"/>
-                    <Label Content="First Name" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 5 30 5"/>
-                    <TextBox x:Name="textBoxFirstname" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <Label Content="Last Name" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <TextBox x:Name="textBoxLastname" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <Label Content="Date Of Birth" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Year:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="23 15 0 5"/>
-                        <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
+                    <Border Style="{StaticResource WindowDesign}" Margin="0,0,0,20" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="2" Background="White">
+                        <StackPanel x:Name="stackPanelPersonalData"  Orientation="Vertical">
+                            <Label Content="Register a Talkin' account" FontSize="24" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Center" Margin="30 15 30 0"/>
+                            <Label Content="First Name" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 5 30 5"/>
+                            <TextBox x:Name="textBoxFirstname" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <Label Content="Last Name" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <TextBox x:Name="textBoxLastname" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <Label Content="Date Of Birth" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Year:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="23 15 0 5"/>
+                                <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
                         Margin="5 5 5 5">
-                            <ComboBox x:Name="comboBoxYear" Background="White" FontFamily="Lime Days" FontSize="20" Width="75" SelectionChanged="comboBoxYear_SelectionChanged" SelectedIndex="0" Cursor="Hand">
-                            </ComboBox>
-                        </Border>
-                        <Label Content="Month:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="0 15 0 5"/>
-                        <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
+                                    <ComboBox x:Name="comboBoxYear" Background="White" FontFamily="Lime Days" FontSize="20" Width="75" SelectionChanged="comboBoxYear_SelectionChanged" SelectedIndex="0" Cursor="Hand">
+                                    </ComboBox>
+                                </Border>
+                                <Label Content="Month:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="0 15 0 5"/>
+                                <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
                         Margin="5 5 5 5">
-                            <ComboBox x:Name="comboBoxMonth" Background="White" FontFamily="Lime Days" FontSize="20" Width="60" SelectionChanged="comboBoxMonth_SelectionChanged" SelectedIndex="0" Cursor="Hand">
-                            </ComboBox>
-                        </Border>
-                        <Label Content="Day:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="0 15 0 5"/>
-                        <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
+                                    <ComboBox x:Name="comboBoxMonth" Background="White" FontFamily="Lime Days" FontSize="20" Width="60" SelectionChanged="comboBoxMonth_SelectionChanged" SelectedIndex="0" Cursor="Hand">
+                                    </ComboBox>
+                                </Border>
+                                <Label Content="Day:" FontSize="18" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="0 15 0 5"/>
+                                <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
                         Margin="5 5 30 5">
-                            <ComboBox x:Name="comboBoxDay" Background="White" FontFamily="Lime Days" FontSize="20" Width="60" SelectedIndex="0" Cursor="Hand">
-                            
-                            </ComboBox>
-                        </Border>
-                    </StackPanel>
-                    <Label Content="Sex" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
+                                    <ComboBox x:Name="comboBoxDay" Background="White" FontFamily="Lime Days" FontSize="20" Width="60" SelectedIndex="0" Cursor="Hand">
+
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <Label Content="Sex" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <Border BorderBrush="Black" BorderThickness="4" CornerRadius="4"
                         Margin="30 5 30 20">
-                        <ComboBox x:Name="comboBoxSex" Background="White" FontFamily="Lime Days" FontSize="20">
-                            <ComboBoxItem>Male</ComboBoxItem>
-                            <ComboBoxItem>Female</ComboBoxItem>
-                        </ComboBox>
+                                <ComboBox x:Name="comboBoxSex" Background="White" FontFamily="Lime Days" FontSize="20">
+                                    <ComboBoxItem>Male</ComboBoxItem>
+                                    <ComboBoxItem>Female</ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
                     </Border>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource WindowDesign}" Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="20 0 20 20" Grid.RowSpan="2">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="E-mail address" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <TextBox x:Name="textBoxEmail" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <Label Content="Username" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <TextBox x:Name="textBoxUsername" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <Label Content="Password" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <PasswordBox x:Name="textBoxPassword" Style="{StaticResource PasswordBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <Label Content="Confirm Password" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
-                    <PasswordBox x:Name="textBoxConfirmPassword" Style="{StaticResource PasswordBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
-                    <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
-                    <DockPanel Margin="30 20 30 20">
-                        <Button x:Name="buttonCancel" Style="{StaticResource MainRoundButtonDesign}" Content="Cancel" Height="50" Width="200" HorizontalAlignment="Left" Click="buttonCancel_Click"/>
-                        <Button x:Name="buttonRegister" Style="{StaticResource HighPriorityButtonDesign}" Content="Register" Height="50" Width="200" HorizontalAlignment="Right" Click="buttonRegister_Click"/>
-                    </DockPanel>
-                </StackPanel>
-            </Border>
-        </Grid>
-        </ScrollViewer>
+                    <Border Style="{StaticResource WindowDesign}" Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="0 0 0 5" Grid.RowSpan="2">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="E-mail address" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <TextBox x:Name="textBoxEmail" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <Label Content="Username" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <TextBox x:Name="textBoxUsername" Style="{StaticResource TextBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <Label Content="Password" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <PasswordBox x:Name="textBoxPassword" Style="{StaticResource PasswordBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <Label Content="Confirm Password" FontSize="20" FontFamily="Lime Days" Width="auto" HorizontalAlignment="Left" Margin="30 15 30 5"/>
+                            <PasswordBox x:Name="textBoxConfirmPassword" Style="{StaticResource PasswordBoxDesign}" Width="auto" Height="25" Margin="30 0 30 0"/>
+                            <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="30 0 30 5"/>
+                            <DockPanel Margin="30 20 30 20">
+                                <Button x:Name="buttonCancel" Style="{StaticResource MainRoundButtonDesign}" Content="Cancel" Height="50" Width="200" HorizontalAlignment="Left" Click="buttonCancel_Click"/>
+                                <Button x:Name="buttonRegister" Style="{StaticResource HighPriorityButtonDesign}" Content="Register" Height="50" Width="200" HorizontalAlignment="Right" Click="buttonRegister_Click"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Border>
     </Border>
+    
     
 </Window>
