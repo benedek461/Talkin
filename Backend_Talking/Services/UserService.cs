@@ -79,7 +79,7 @@ namespace ChatAPI.Services
             }
         }
 
-        public async Task<User?> GetUserAsync()
+        public async Task<User?> GetDomainUserAsync()
         {
             try
             {
@@ -98,6 +98,18 @@ namespace ChatAPI.Services
                 var users = await _userRepository.GetUsersAsync();
 
                 return users.Select(x => _mapper.Map<UserDto>(x)).ToList();
+            }
+            catch
+            {
+                throw new ChatApiException((int)ErrorCodes.DatabaseError);
+            }
+        }
+
+        public async Task<UserDto> GetUserAsync()
+        {
+            try
+            {
+                return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(_httpContextService.UserId));
             }
             catch
             {

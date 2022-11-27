@@ -53,7 +53,7 @@ namespace ChatAPI.Services
         public async Task<List<int>> GetConversationIdsByPartnerIdsAsync(List<int> partnerIds)
         {
             partnerIds.Add(_httpContextService.UserId);
-            var user = await _userService.GetUserAsync();
+            var user = await _userService.GetDomainUserAsync();
 
             return user.Conversations
                 .Where(x => x.Partitioners.Select(y => y.Id).Except(partnerIds).ToList().Count == 0)

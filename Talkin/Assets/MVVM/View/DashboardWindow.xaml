@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DashboardWindow" Height="720" Width="1280"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MouseDown="Window_MouseDown">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -156,14 +156,14 @@
                     <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
                                 VerticalAlignment="Center" HorizontalAlignment="Left" 
                                 Margin="10 10 5 10">
-                        <Image Source="/Assets/Themes/Icons/man.png" Width="50" Height="50"/>
+                        <Image x:Name="imageProfileImage" Source="/Assets/Themes/Icons/man.png" Width="50" Height="50"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                                 VerticalAlignment="Center" HorizontalAlignment="Left" 
                                 Margin="0 10 5 10">
-                        <Label Content="benedek461" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="Lime Days"/>
-                        <Label Content="ID: #1451" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="laCartoonerie"/>
+                        <Label x:Name="labelCurrentUserUsername" Content="" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="Lime Days"/>
+                        <Label x:Name="labelCurrentUserID" Content="" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" FontFamily="laCartoonerie"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"

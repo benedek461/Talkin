@@ -269,53 +269,6 @@ namespace Talkin.Assets.MVVM.View
             }
         }
 
-        private bool isUsernameUsed(string username)
-        {
-            try
-            {
-                string connectionString = "Data Source=DESKTOP-4EFJV65\\SQLEXPRESS;Initial Catalog=TalkinDatabase;Integrated Security=True";
-                SqlConnection connection = new SqlConnection(connectionString);
-                
-                connection.Open();
-                string query = "SELECT username FROM [User]";
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
-
-                while(dataReader.Read())
-                {
-                    if (dataReader.GetString(0) == username)
-                    {
-                        MessageBox.Show("Foglalt");
-                        dataReader.Close();
-                        connection.Close();
-                        return true;
-                    }
-                }
-                dataReader.Close();
-                connection.Close();
-                return false;
-            }
-            catch
-            {
-                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
-                niemw.Show();
-                MessageBox.Show("isUsernameUsed ERROR");
-                return false;
-            }
-        }
-        
-        private bool isPasswordConfirmationValid(string password, string passwordInConfirm)
-        {
-            if(password != passwordInConfirm)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
         private void comboBoxMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedMonth = comboBoxMonth.SelectedItem.ToString();
@@ -369,39 +322,40 @@ namespace Talkin.Assets.MVVM.View
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
             HttpClient client = APIHelper.client;
-            var endpoint = new Uri("https://localhost:44394/register");
+            var endpoint = new Uri("https://localhost:7031/api/User/Register");
 
             ComboBoxItem cbi = (ComboBoxItem)comboBoxSex.SelectedItem;
             var newUser = new User()
             {
+                Email = textBoxEmail.Text,
                 userName = textBoxUsername.Text,
-                password = textBoxPassword.Password,
-                email = textBoxEmail.Text,
-                sex = cbi.Content.ToString(),
+                Password = textBoxPassword.Password,
                 firstName = textBoxFirstname.Text,
                 lastName = textBoxLastname.Text,
-                dateOfBirth = comboBoxYear.SelectedValue.ToString() + "/" +
+                Birthday = comboBoxYear.SelectedValue.ToString() + "/" +
                               comboBoxMonth.SelectedValue.ToString() + "/" +
-                              comboBoxDay.SelectedValue.ToString()
+                              comboBoxDay.SelectedValue.ToString(),
+                Sex = cbi.Content.ToString(),
             };
-
+            
             if (isRegistrationValid())
             {
-                var newPostJson = JsonConvert.SerializeObject(newUser);
-                var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
+                try
+                {
+                    var newPostJson = JsonConvert.SerializeObject(newUser);
+                    var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                    var result = client.PostAsync(endpoint, payload).Result.Content.ReadAsStringAsync().Result;
 
-                RegistrationSuccessful rs = new RegistrationSuccessful();
-                rs.labelMessage.Content = "Registration was successful!";
-                rs.Show();
+                    RegistrationSuccessful rs = new RegistrationSuccessful();
+                    rs.labelMessage.Content = "Registration was successful!";
+                    rs.Show();
+                }
+                catch 
+                {
+                    NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
+                    niemw.Show();
+                }
             }
-            else
-            {
-                NoInternetErrorMessageWindow niemw = new NoInternetErrorMessageWindow();
-                niemw.Show();
-            }
-            
-            
         }
     }
 }

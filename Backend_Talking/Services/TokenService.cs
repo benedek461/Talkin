@@ -22,7 +22,13 @@ namespace ChatAPI.Services
         {
             var claims = new List<Claim>
             {
-                new Claim("Id", user.Id.ToString())
+                new Claim("Id", user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.userName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.DateOfBirth, user.Birthday),
+                new Claim(ClaimTypes.Gender, user.Sex),
+                new Claim(ClaimTypes.Surname, user.lastName),
+                new Claim(ClaimTypes.GivenName, user.firstName)
             };
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));

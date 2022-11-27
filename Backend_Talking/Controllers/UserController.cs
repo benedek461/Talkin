@@ -88,5 +88,20 @@ namespace ChatAPI.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet]
+        [Route("Me")]
+        [Authorize]
+        public async Task<ActionResult<UserDto>> GetUserAsync()
+        {
+            try
+            {
+                return await _userService.GetUserAsync();
+            }
+            catch (ChatApiException ex)
+            {
+                return StatusCode(500, ((ErrorCodes)ex.ErrorCode).ToString());
+            }
+        }
     }
 }

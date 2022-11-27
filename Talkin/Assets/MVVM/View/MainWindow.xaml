@@ -8,7 +8,7 @@
         Title="LoginScreen" Height="640" Width="480"
         WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent" ResizeMode="NoResize">
+        Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -43,8 +43,8 @@
                         <Image Source="/Assets/Themes/Icons/settings.png"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="buttonMinimize" Style="{StaticResource MinimizeButtonDesign}" Margin="5 15 5 0"/>
-                <Button x:Name="buttonClose" Style="{StaticResource CloseButtonDesign}" Margin="5 15 15 0"/>
+                <Button x:Name="buttonMinimize" Style="{StaticResource MinimizeButtonDesign}" Margin="5 15 5 0" Click="buttonMinimize_Click"/>
+                <Button x:Name="buttonClose" Style="{StaticResource CloseButtonDesign}" Margin="5 15 15 0" Click="buttonClose_Click"/>
             </StackPanel>
             
             <!--Logó-->

@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Talkin"
+        xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
         mc:Ignorable="d"
         Title="MainSettingsWindow" Height="650" Width="850"
         WindowStyle="None" WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize">
+        AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -106,17 +106,17 @@
                 <Border x:Name="settingWindowUserInfo" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">
                     <StackPanel Margin="5">
                         <Label Content="Account Owner" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelFullName" Content="Hevesi Benedek Sándor" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelFullName" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                         <Label Content="Sex" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelSex" Content="Male" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelSex" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                         <Label Content="Date of birth" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelBirthDate" Content="2000/03/25" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelBirthDate" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                         <Label Content="Username" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelUsername" Content="benedek461" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelUsername" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                         <Label Content="Password" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelPassword" Content="**********" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelPassword" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                         <Label Content="Email" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label x:Name="labelEmail" Content="rave01385@gmail.com" FontFamily="laCartoonerie" FontSize="14"/>
+                        <Label x:Name="labelEmail" Content="" FontFamily="laCartoonerie" FontSize="14"/>
                     </StackPanel>
                 </Border>
                 <Border x:Name="settingWindowAbout" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">

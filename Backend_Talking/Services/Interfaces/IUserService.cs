@@ -10,7 +10,8 @@ namespace ChatAPI.Services.Interfaces
         Task<User?> GetUserByEmailAsync(string email);
         Task<User?> GetUserByUsernameAsync(string username);
         Task<bool> ValidateUsernameAsync(string username);
-        Task<User?> GetUserAsync();
+        Task<User?> GetDomainUserAsync();
         Task<List<UserDto>> GetUsersAsync();
+        Task<UserDto> GetUserAsync();
     }
 }

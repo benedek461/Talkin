@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Talkin.Assets.Helpers;
+using Talkin.Assets.MVVM.Models;
 //using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
@@ -25,6 +26,18 @@ namespace Talkin.Assets.MVVM.View
         public DashboardWindow()
         {
             InitializeComponent();
+            labelCurrentUserUsername.Content = CurrentUser.currentUser.userName;
+            labelCurrentUserID.Content = "ID Number: " + CurrentUser.currentUser.Id;
+            if (CurrentUser.currentUser.Sex == "Male")
+            {
+                imageProfileImage.Source = 
+                    new BitmapImage(new Uri(@"/Assets/Themes/Icons/man.png", UriKind.Relative));
+            }
+            else
+            {
+                imageProfileImage.Source =
+                    new BitmapImage(new Uri(@"/Assets/Themes/Icons/beauty.png", UriKind.Relative));
+            }
         }
 
         private void buttonOpenSettings_Click(object sender, RoutedEventArgs e)
@@ -47,7 +60,7 @@ namespace Talkin.Assets.MVVM.View
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-
+            buttonLogout_Click(sender, e);
         }
 
         private void buttonMinimize_Click(object sender, RoutedEventArgs e)
@@ -62,17 +75,29 @@ namespace Talkin.Assets.MVVM.View
 
         private async void buttonLogout_Click(object sender, RoutedEventArgs e)
         {
-            var endpoint = new Uri("https://localhost:44394/logout");
+            var endpoint = new Uri("https://localhost:7031/api/Account/logout");
 
             HttpClient client = APIHelper.client;
 
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer" + " " + Properties.Settings.Default.UserToken);
+            var result = await client.DeleteAsync(endpoint);
 
-            await client.DeleteAsync(endpoint);
+            if (result.IsSuccessStatusCode)
+            {
+                client.DefaultRequestHeaders.Remove("Authorization");
+                
+                Token.CurrentUserJWTToken = string.Empty;
 
-            Properties.Settings.Default.UserToken = string.Empty;
+                User user = new User();
+                CurrentUser.currentUser = user;
+                
+                this.Close();
+            }
+        }
 
-            this.Close();
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

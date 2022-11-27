@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
 {
@@ -46,6 +48,7 @@ namespace Talkin.Assets.MVVM.View
 
         public void ShowUserInfo()
         {
+
             this.stackPanelSettings.Children.Clear();
             this.stackPanelSettings.Children.Add(this.settingWindowUserInfo);
 
@@ -84,6 +87,32 @@ namespace Talkin.Assets.MVVM.View
             ShowUserInfo();
             SolidColorBrush orange = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9b233"));
             SolidColorBrush white = new SolidColorBrush(Colors.White);
+
+            if (CurrentUser.currentUser == null || IsAnyNullOrEmpty(CurrentUser.currentUser))
+            {
+                labelFullName.Content = "Unavailable! Please sign in to see this info...";
+                labelEmail.Content = "Unavailable! Please sign in to see this info...";
+                labelPassword.Content = "Unavailable! Please sign in to see this info...";
+                labelBirthDate.Content = "Unavailable! Please sign in to see this info...";
+                labelUsername.Content = "Unavailable! Please sign in to see this info...";
+                labelSex.Content = "Unavailable! Please sign in to see this info...";
+            }
+            else
+            {
+                string censoredPassword = "";
+                for (int i = 0; i < CurrentUser.currentUser.Password.Length; i++)
+                {
+                    censoredPassword += "*";
+                }
+
+                labelFullName.Content = CurrentUser.currentUser.firstName + " " + CurrentUser.currentUser.lastName;
+                labelEmail.Content = CurrentUser.currentUser.Email;
+                labelPassword.Content = censoredPassword;
+                labelBirthDate.Content = CurrentUser.currentUser.Birthday;
+                labelUsername.Content = CurrentUser.currentUser.userName;
+                labelSex.Content = CurrentUser.currentUser.Sex;
+            }
+
             this.buttonSettingsUserInfo.Background = orange;
             this.buttonSettingsUser.Background = white;
             this.buttonSettingsAbout.Background = white;
@@ -110,6 +139,28 @@ namespace Talkin.Assets.MVVM.View
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        bool IsAnyNullOrEmpty(object myObject)
+        {
+            foreach (PropertyInfo pi in myObject.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(string))
+                {
+                    string value = (string)pi.GetValue(myObject);
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
