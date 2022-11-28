@@ -1,0 +1,59 @@
+﻿<Window x:Class="Talkin.Assets.MVVM.View.AddFriendWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Talkin.Assets.MVVM.View"
+        mc:Ignorable="d"
+        Title="AddFriendWindow" Height="245" Width="500"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:001" Storyboard.TargetProperty="Opacity" SpeedRatio="7">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Border Style="{StaticResource WindowDesign}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="15 15 15 0">
+                <Label Content="Search a new friend" FontFamily="Lime Days"
+                   FontSize="22" HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+                <Label Content="Enter your friend username here!"
+                   FontFamily="laCartoonerie" FontSize="20" HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom" Margin="15 0 15 0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="15 0 15 15">
+                <Label Content=""
+                   FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom" Margin="20 0 20 0"/>
+                <TextBox x:Name="textBoxUsername" Grid.Row="1" Style="{StaticResource TextBoxDesign}"
+                         Margin="20 0 20 0"/>
+                <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5"
+                       Margin="20 0 20 0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="15 0 15 15" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button x:Name="buttonRequest" Style="{StaticResource MainRoundButtonDesign}"
+                        Height="50" Width="200" FontSize="22" Content="Add friend" VerticalAlignment="Center" 
+                        Margin="15 0 15 15" Click="buttonRequest_Click"/>
+                <Button x:Name="buttonCancel" Style="{StaticResource MainRoundButtonDesign}"
+                        Height="50" Width="200" FontSize="22" Content="Cancel"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 0 15 15" Click="buttonCancel_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

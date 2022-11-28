@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -70,7 +71,8 @@ namespace Talkin.Assets.MVVM.View
 
         private void buttonAddFriend_Click(object sender, RoutedEventArgs e)
         {
-
+            AddFriendWindow afw = new AddFriendWindow();
+            afw.Show();
         }
 
         private async void buttonLogout_Click(object sender, RoutedEventArgs e)
@@ -99,5 +101,45 @@ namespace Talkin.Assets.MVVM.View
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private async Task<List<User>> AllConversationConnection()
+        {
+            List<User> allConversationConnection = new List<User>();
+
+            var endpoint = new Uri("https://localhost:7031/api/User/Me");
+            var client = APIHelper.client;
+
+            var result = client.GetAsync(endpoint).Result.Content.ReadAsStringAsync().Result;
+
+            var me = JsonConvert.DeserializeObject<User>(result);
+
+
+            Console.WriteLine(" ");
+            
+
+            foreach (int conversationId in me.ConversationIds)
+            {
+                var endpoint2 = new Uri($"https://localhost:7031/api/Conversation/{conversationId}");
+                var client2 = APIHelper.client;
+                var result2 = client2.GetAsync(endpoint2).Result.Content.ReadAsStringAsync().Result;
+                var conversationJson = JsonConvert.DeserializeObject<Message>(result2);
+                var friendId = conversationJson.partitioners[0];
+                if (friendId == me.Id)
+                {
+                    friendId = conversationJson.partitioners[1];
+                }
+
+                var endpoint3 = new Uri($"https://localhost:7031/api/User/SpecificUserById/{friendId}");
+                var client3 = APIHelper.client;
+
+                var result3 = client3.GetAsync(endpoint3).Result.Content.ReadAsStringAsync().Result;
+                var friendUser = JsonConvert.DeserializeObject<User>(result3);
+
+                allConversationConnection.Add(friendUser);
+            }
+
+            return allConversationConnection;
+        }
+
     }
 }

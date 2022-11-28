@@ -33,6 +33,7 @@ namespace ChatAPI.Controllers
             }
         }
 
+        
         [HttpGet]
         [Route("Ids")]
         [Authorize]
@@ -49,8 +50,9 @@ namespace ChatAPI.Controllers
         }
 
         [HttpGet]
+        [Route("{conversationId}")]
         [Authorize]
-        public async Task<ActionResult<GetConversationDto>> GetConversationByIdAsync([FromQuery]int conversationId)
+        public async Task<ActionResult<GetConversationDto>> GetConversationByIdAsync([FromRoute]int conversationId)
         {
             try
             {
@@ -61,5 +63,9 @@ namespace ChatAPI.Controllers
                 return StatusCode(500, ((ErrorCodes)ex.ErrorCode).ToString());
             }
         }
+
+        //[HttpGet]
+        //[Authorize]
+        //public async Task
     }
 }

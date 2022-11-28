@@ -8,9 +8,8 @@ namespace Talkin.Assets.MVVM.Models
 {
     internal class Message
     {
-        public Guid message_ID { get; set; }
-        public User sender_ID { get; set; }
-        public User receiver_ID { get; set; }
-        public string message_text { get; set; }
+        public int message_ID { get; set; }
+        public List<int> partitioners { get; set; }
+        public List<string> message_text { get; set; }
     }
 }

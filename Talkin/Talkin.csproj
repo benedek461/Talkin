@@ -122,6 +122,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\MVVM\View\AddFriendError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\View\AddFriendSuccessful.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\View\AddFriendWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\MVVM\View\AreYouSureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,6 +249,15 @@
     <Compile Include="Assets\MVVM\Models\Message.cs" />
     <Compile Include="Assets\MVVM\Models\Token.cs" />
     <Compile Include="Assets\MVVM\Models\User.cs" />
+    <Compile Include="Assets\MVVM\View\AddFriendError.xaml.cs">
+      <DependentUpon>AddFriendError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\View\AddFriendSuccessful.xaml.cs">
+      <DependentUpon>AddFriendSuccessful.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\View\AddFriendWindow.xaml.cs">
+      <DependentUpon>AddFriendWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

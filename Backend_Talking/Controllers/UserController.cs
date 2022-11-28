@@ -75,12 +75,27 @@ namespace ChatAPI.Controllers
         }
 
         [HttpGet]
-        [Route("SpecificUser/{userName}")]
+        [Route("SpecificUserByName/{userName}")]
         [Authorize]
         public async Task<IActionResult> GetSpecificUserByUsername([FromRoute] string userName)
         {
             var user = await _chatDbContext.Users.FirstOrDefaultAsync(x => x.userName == userName);
             
+            if (user == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("SpecificUserById/{ID}")]
+        [Authorize]
+        public async Task<IActionResult> GetSpecificUserByID([FromRoute] int ID)
+        {
+            var user = await _chatDbContext.Users.FirstOrDefaultAsync(x => x.Id == ID);
+
             if (user == null)
             {
                 return NotFound();

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Talking.Migrations
 {
     [DbContext(typeof(ChatDbContext))]
-    [Migration("20221125125327_Fourth Migration")]
-    partial class FourthMigration
+    [Migration("20221127103252_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
