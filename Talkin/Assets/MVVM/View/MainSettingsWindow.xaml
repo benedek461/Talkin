@@ -81,21 +81,30 @@
                 <Border x:Name="settingWindowUsername" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">
                     <StackPanel Margin="5">
                         <Label Content="Change Username" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label Content="Change your current username by entering a new one below." FontFamily="laCartoonerie" FontSize="14" HorizontalAlignment="Left"/>
+                        <TextBlock Margin="5,0,0,0" TextWrapping="Wrap" FontFamily="laCartoonerie" FontSize="14" HorizontalAlignment="Left">
+                            <Run Text="Change your current username by entering a new one below."/>
+                            <LineBreak/>
+                            <Run Text="You will have to log in again for the changes to take effect."/>
+                        </TextBlock>
                         <TextBox x:Name="textBoxNewUsername" Style="{StaticResource TextBoxDesign}" HorizontalAlignment="Left" Margin="5 0 30 5" Width="365" Height="25"/>
                         <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="5 0 30 5"/>
-                        <Button Style="{StaticResource MainRoundButtonDesign}" Width="150" Height="50" HorizontalAlignment="Left" Margin="5 5 30 5" Content="Apply"/>
+                        <Button x:Name="buttonChangeUsername" Style="{StaticResource MainRoundButtonDesign}" Width="150" Height="50" HorizontalAlignment="Left" Margin="5 5 30 5" Content="Apply" Click="buttonChangeUsername_Click"/>
                     </StackPanel>
                 </Border>
                 <Border x:Name="settingWindowPassword" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">
                     <StackPanel Margin="5">
                         <Label Content="Change Password" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
-                        <Label Content="Change your current password by entering a new one below." FontFamily="laCartoonerie" FontSize="14" HorizontalAlignment="Left"/>
+                        <TextBlock Margin="5,0,0,0" TextWrapping="Wrap" FontFamily="laCartoonerie" FontSize="14" HorizontalAlignment="Left">
+                            <Run Text="Change your current password by entering a new one below."/>
+                            <LineBreak/>
+                            <Run Text="You will have to log in again for the changes to take effect."/>
+                        </TextBlock>
                         <PasswordBox x:Name="textBoxNewPassword" Style="{StaticResource PasswordBoxDesign}" HorizontalAlignment="Left" Margin="5 0 30 5" Width="365" Height="25"/>
                         <Image Source="/Assets/Themes/Backgrounds/LineTexture.png" Stretch="Fill" Width="auto" Height="5" Margin="5 0 30 5"/>
-                        <Button Style="{StaticResource MainRoundButtonDesign}" Width="150" Height="50" HorizontalAlignment="Left" Margin="5 5 30 5" Content="Apply"/>
+                        <Button x:Name="buttonChangePassword" Style="{StaticResource MainRoundButtonDesign}" Width="150" Height="50" HorizontalAlignment="Left" Margin="5 5 30 5" Content="Apply" Click="buttonChangePassword_Click"/>
                     </StackPanel>
                 </Border>
+                <!--
                 <Border x:Name="settingWindowDeleteAccount" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">
                     <StackPanel Margin="5">
                         <Label Content="Delete Account" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>
@@ -103,6 +112,7 @@
                         <Button x:Name="buttonDelete" Style="{StaticResource HighPriorityButtonDesign}" Width="150" Height="50" HorizontalAlignment="Left" Margin="5 5 30 5" Content="Delete" Click="buttonDelete_Click"/>
                     </StackPanel>
                 </Border>
+                -->
                 <Border x:Name="settingWindowUserInfo" Style="{StaticResource WindowDesign}" Background="White"  Margin="5 5 5 5">
                     <StackPanel Margin="5">
                         <Label Content="Account Owner" FontFamily="Lime Days" FontSize="20" HorizontalAlignment="Left"/>

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Backend_Talking.Models.Dtos;
 using ChatAPI.Data;
 using ChatAPI.Exceptions;
 using ChatAPI.Models;
@@ -75,12 +76,26 @@ namespace ChatAPI.Controllers
         }
 
         [HttpGet]
-        [Route("SpecificUser/{userName}")]
+        [Route("GetUserByUsername/{userName}")]
         [Authorize]
-        public async Task<IActionResult> GetSpecificUserByUsername([FromRoute] string userName)
+        public async Task<IActionResult> GetUserByUsername([FromRoute] string userName)
         {
-            var user = await _chatDbContext.Users.FirstOrDefaultAsync(x => x.userName == userName);
+            var user = await _userService.GetUserByUsernameAsync(userName);
             
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("GetUserById/{Id}")]
+        [Authorize]
+        public async Task<ActionResult<UserDto>> GetUserById([FromRoute] int Id)
+        {
+            var user = await _userService.GetByIdAsync(Id);
             if (user == null)
             {
                 return NotFound();
@@ -99,6 +114,21 @@ namespace ChatAPI.Controllers
                 return await _userService.GetUserAsync();
             }
             catch (ChatApiException ex)
+            {
+                return StatusCode(500, ((ErrorCodes)ex.ErrorCode).ToString());
+            }
+        }
+
+        [HttpPatch]
+        [Route("Update")]
+        [Authorize]
+        public async Task<ActionResult<CreateUserDto>> UpdateUserAsync(UpdateUserDto updateUserDto)
+        {
+            try
+            {
+                return _mapper.Map<CreateUserDto>(await _userService.UpdateUserAsync(updateUserDto));
+            }
+            catch(ChatApiException ex)
             {
                 return StatusCode(500, ((ErrorCodes)ex.ErrorCode).ToString());
             }

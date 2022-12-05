@@ -31,7 +31,7 @@
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
                                            Height="Auto" Fill="Transparent"/>
                                 <Border x:Name="Rectangle1" CornerRadius="10 10 10 10" HorizontalAlignment="Stretch" 
-                                        VerticalAlignment="Stretch" Width="Auto" Height="450" 
+                                        VerticalAlignment="Stretch" Width="Auto" Height="auto" 
                                         Background="{TemplateBinding Background}" BorderThickness="2" BorderBrush="black"/>
                             </Grid>
                             <ControlTemplate.Triggers>

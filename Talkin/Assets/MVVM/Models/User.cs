@@ -17,5 +17,6 @@ namespace Talkin.Assets.MVVM.Models
         //public string Name { get; set; }
         public string Birthday { get; set; }
         public string Sex { get; set; }
+        public List<int> ConversationIds { get; set; }
     }
 }

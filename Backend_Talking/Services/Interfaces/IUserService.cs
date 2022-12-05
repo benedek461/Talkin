@@ -1,4 +1,5 @@
-﻿using ChatAPI.Models;
+﻿using Backend_Talking.Models.Dtos;
+using ChatAPI.Models;
 using ChatAPI.Models.Dtos;
 
 namespace ChatAPI.Services.Interfaces
@@ -13,5 +14,7 @@ namespace ChatAPI.Services.Interfaces
         Task<User?> GetDomainUserAsync();
         Task<List<UserDto>> GetUsersAsync();
         Task<UserDto> GetUserAsync();
+        Task<User?> UpdateUserAsync(UpdateUserDto updateUserDto);
+        Task<UserDto> GetByIdAsync(int Id);
     }
 }

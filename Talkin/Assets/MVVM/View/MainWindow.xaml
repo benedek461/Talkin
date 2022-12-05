@@ -74,7 +74,8 @@
                     <Button x:Name="buttonRegister" Style="{StaticResource MainRoundButtonDesign}" Margin="5 15 30 0" Height="50" Width="200" Content="REGISTER" Click="buttonRegister_Click"/>
                 </StackPanel>
                 
-                <Button x:Name="buttonForgotPWD" Style="{StaticResource SecondaryButtonDesign}" Margin="15 15 15 0" Height="auto" Width="150" Content="FORGET PASSWORD?"/>
+                <Button IsEnabled="False" x:Name="buttonForgotPWD" Style="{StaticResource SecondaryButtonDesign}" Margin="15 15 15 0" Height="auto" Width="150" Content=""/>
+                
             </StackPanel>
 
             <!--Copyright felirat-->

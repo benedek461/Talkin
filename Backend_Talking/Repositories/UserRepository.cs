@@ -1,4 +1,6 @@
-﻿using ChatAPI.Data;
+﻿using AutoMapper;
+using Backend_Talking.Models.Dtos;
+using ChatAPI.Data;
 using ChatAPI.Models;
 using ChatAPI.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,11 +10,14 @@ namespace ChatAPI.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly ChatDbContext _chatDbContext;
+        private readonly IMapper _mapper;
 
         public UserRepository(
-            ChatDbContext chatDbContext)
+            ChatDbContext chatDbContext,
+            IMapper mapper)
         {
             _chatDbContext = chatDbContext;
+            _mapper = mapper;
         }
 
         public async Task<User> CreateAsync(User user)
@@ -51,6 +56,21 @@ namespace ChatAPI.Repositories
                 .AsNoTracking()
                 .Include(user => user.Conversations)
                 .ToListAsync();
+        }
+
+        public async Task<User?> UpdateAsync(UpdateUserDto updateUserDto)
+        {
+            var user = await _chatDbContext.Users
+                .FirstOrDefaultAsync(x => x.Id == updateUserDto.Id);
+
+            if (user != null) 
+            {
+                _mapper.Map(updateUserDto, user);
+
+                await _chatDbContext.SaveChangesAsync();
+            }
+
+            return user;
         }
     }
 }

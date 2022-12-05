@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Talkin.Assets.MVVM.View
     /// </summary>
     public partial class App : Application
     {
-        public App() 
+        public App()
         {
             APIHelper.InitializeClient();
         }

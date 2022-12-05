@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Talkin.Assets.MVVM.Models
 {
-    internal class Conversation
+    public class Conversation
     {
-        public Guid conversation_ID { get; set; }
-        public User user1_ID { get; set; }
-        public User user2_ID { get; set; }
-        public Message msg_ID { get; set; }
+        public int id { get; set; }
+        public List<int> partitioners { get; set; }
+        public List<ConversationUser> ConversationUsers { get; set; }
+        public List<Message> messages { get; set; }
     }
 }

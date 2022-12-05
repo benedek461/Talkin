@@ -349,6 +349,8 @@ namespace Talkin.Assets.MVVM.View
                     RegistrationSuccessful rs = new RegistrationSuccessful();
                     rs.labelMessage.Content = "Registration was successful!";
                     rs.Show();
+                    
+                    this.Close();
                 }
                 catch 
                 {

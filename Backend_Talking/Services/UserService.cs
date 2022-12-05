@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Backend_Talking.Models.Dtos;
 using ChatAPI.Exceptions;
 using ChatAPI.Models;
 using ChatAPI.Models.Dtos;
@@ -110,6 +111,31 @@ namespace ChatAPI.Services
             try
             {
                 return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(_httpContextService.UserId));
+            }
+            catch
+            {
+                throw new ChatApiException((int)ErrorCodes.DatabaseError);
+            }
+        }
+
+        public async Task<User?> UpdateUserAsync(UpdateUserDto updateUserDto)
+        {
+            try
+            {
+                updateUserDto.Id = _httpContextService.UserId;
+                return await _userRepository.UpdateAsync(updateUserDto);
+            }
+            catch
+            {
+                throw new ChatApiException((int)ErrorCodes.DatabaseError);
+            }
+        }
+
+        public async Task<UserDto> GetByIdAsync(int Id)
+        {
+            try
+            {
+                return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(Id));
             }
             catch
             {

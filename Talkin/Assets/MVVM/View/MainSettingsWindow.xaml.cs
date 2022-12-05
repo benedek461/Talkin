@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Talkin.Assets.Helpers;
 using Talkin.Assets.MVVM.Models;
 
 namespace Talkin.Assets.MVVM.View
@@ -43,7 +48,7 @@ namespace Talkin.Assets.MVVM.View
             this.stackPanelSettings.Children.Clear();
             this.stackPanelSettings.Children.Add(this.settingWindowUsername);
             this.stackPanelSettings.Children.Add(this.settingWindowPassword);
-            this.stackPanelSettings.Children.Add(this.settingWindowDeleteAccount);
+            //this.stackPanelSettings.Children.Add(this.settingWindowDeleteAccount);
         }
 
         public void ShowUserInfo()
@@ -161,6 +166,48 @@ namespace Talkin.Assets.MVVM.View
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private async void buttonChangeUsername_Click(object sender, RoutedEventArgs e)
+        {
+            var endpoint = new Uri("https://localhost:7031/api/User/Update");
+
+            HttpClient client = APIHelper.client;
+
+            User user = new User()
+            {
+                userName = textBoxNewUsername.Text,
+            };
+
+            var content = JsonConvert.SerializeObject(user);
+            var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://localhost:7031/api/User/Update");
+            request.Content = new StringContent(content, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            SplashScreenRestart ssr = new SplashScreenRestart();
+            ssr.Show();
+        }
+
+        private async void buttonChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            var endpoint = new Uri("https://localhost:7031/api/User/Update");
+
+            HttpClient client = APIHelper.client;
+
+            User user = new User()
+            {
+                Password = textBoxNewPassword.Password,
+            };
+
+            var content = JsonConvert.SerializeObject(user);
+            var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://localhost:7031/api/User/Update");
+            request.Content = new StringContent(content, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            SplashScreenRestart ssr = new SplashScreenRestart();
+            ssr.Show();
         }
     }
 }

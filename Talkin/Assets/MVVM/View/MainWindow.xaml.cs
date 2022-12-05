@@ -79,6 +79,7 @@ namespace Talkin.Assets.MVVM.View
 
                         GetAndSetCurrentUser(Token.CurrentUserJWTToken);
 
+                        /*
                         MessageBox.Show($"Id: {CurrentUser.currentUser.Id}\n" +
                                         $"Email: {CurrentUser.currentUser.Email}\n" +
                                         $"Username: {CurrentUser.currentUser.userName}\n" +
@@ -86,9 +87,15 @@ namespace Talkin.Assets.MVVM.View
                                         $"FirstName: {CurrentUser.currentUser.firstName}\n" +
                                         $"LastName: {CurrentUser.currentUser.lastName}\n" +
                                         $"Birthday: {CurrentUser.currentUser.Birthday}");
+                        */
 
+                        /*
                         DashboardWindow dw = new DashboardWindow();
                         dw.Show();
+                        */
+                        SplashScreenLogin ssl = new SplashScreenLogin();
+                        ssl.Show();
+                        this.Close();
                     }
                 }
                 else
@@ -133,7 +140,7 @@ namespace Talkin.Assets.MVVM.View
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void buttonMinimize_Click(object sender, RoutedEventArgs e)

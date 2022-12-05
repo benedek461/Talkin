@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Backend_Talking.Models.Dtos;
 using ChatAPI.Models;
 using ChatAPI.Models.Dtos;
 
@@ -29,6 +30,11 @@ namespace ChatAPI.Profiles
             CreateMap<CreateMessageDto, Message>()
                 .ForMember(dest => dest.CreatedAt,
                     opt => opt.MapFrom(src => DateTime.Now));
+            CreateMap<UpdateUserDto, User>()
+                 .ForMember(dest => dest.userName, opt => opt.Ignore())
+                 .AfterMap((src, dest) => dest.userName = src.userName != null ? src.userName : dest.userName)
+                 .ForMember(dest => dest.Password, opt => opt.Ignore())
+                 .AfterMap((src, dest) => dest.Password = src.Password != null ? src.Password : dest.Password);
         }
     }
 }

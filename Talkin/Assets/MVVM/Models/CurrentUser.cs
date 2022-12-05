@@ -9,5 +9,6 @@ namespace Talkin.Assets.MVVM.Models
     public class CurrentUser
     {
         public static User currentUser { get; set; }
+        public static List<User> friends { get; set; }
     }
 }

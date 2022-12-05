@@ -34,9 +34,10 @@ namespace ChatAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Ids")]
+        [Route("Ids/{partnerIds}")]
+        //[Produces("text/plain")]
         [Authorize]
-        public async Task<ActionResult<List<int>>> GetConversationIdsAsync([FromQuery]List<int> partnerIds)
+        public async Task<ActionResult<List<int>>> GetConversationIdsAsync([FromRoute]List<int> partnerIds)
         {
             try
             {
@@ -49,8 +50,9 @@ namespace ChatAPI.Controllers
         }
 
         [HttpGet]
+        [Route("GetConversationByIdAsync/{conversationId}")]
         [Authorize]
-        public async Task<ActionResult<GetConversationDto>> GetConversationByIdAsync([FromQuery]int conversationId)
+        public async Task<ActionResult<GetConversationDto>> GetConversationByIdAsync([FromRoute]int conversationId)
         {
             try
             {
